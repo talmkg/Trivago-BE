@@ -34,6 +34,7 @@ router.get("/", async (req, res, next) => {
 
 // router.get("/me/stories", basicMiddleware, async (req, res, next) => {
 router.get("/me/accomodations", jwtMiddleware, async (req, res, next) => {
+  console.log(req.user.role);
   if (req.user.role !== "host") {
     const error = new Error("You have not registered yet.");
     error.status = 403;
@@ -84,7 +85,7 @@ router.delete("/:id", async (req, res, next) => {
 //  update user
 router.put("/:id", async (req, res, next) => {
   try {
-    const changeduser = await users.findByIdAndUpdate(req.params.id, req.body, {
+    const changeduser = await Users.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
     res.send(changeduser);
@@ -92,5 +93,13 @@ router.put("/:id", async (req, res, next) => {
     res.send(500).send({ message: error.message });
   }
 });
-
+// router.post("/", jwtMiddleware, async (req, res, next) => {
+//   try {
+//     const blog = await new Users(req.body).save();
+//     res.status(201).send(blog);
+//   } catch (error) {
+//     console.log(error);
+//     res.send(500).send({ message: error.message });
+//   }
+// });
 export default router;

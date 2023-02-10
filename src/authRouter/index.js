@@ -4,8 +4,6 @@ import UsersModel from "../users/schema.js";
 const authRouter = express.Router();
 authRouter.post("/login", async (req, res, next) => {
   try {
-    // findByCredentials() = a function in authors/schema.js which finds a user by email and compares the hashed value of password from request and the stored hashed value of the password.
-
     const { email, password } = req.body;
 
     if (!email || !password) {
