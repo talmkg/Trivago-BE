@@ -28,7 +28,7 @@ authRouter.post("/login", async (req, res, next) => {
   }
 });
 
-// create  author
+// create  user
 authRouter.post("/register", async (req, res, next) => {
   try {
     const user = await new UsersModel(req.body).save();

@@ -1,4 +1,4 @@
-import Blogs from "../../blogs/schema.js";
+import Blogs from "../../accomodations/schema.js";
 
 const onlyOwner = async (req, res, next) => {
   const blog = await Blogs.findById(req.params.id);

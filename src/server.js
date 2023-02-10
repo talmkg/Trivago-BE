@@ -6,7 +6,7 @@ import listEndpoints from "express-list-endpoints";
 
 import usersRouter from "./users/index.js";
 
-import blogsRouter from "./blogs/index.js";
+import blogsRouter from "./accomodations/index.js";
 
 import { errorHandler } from "./errorHandlers.js";
 
@@ -49,7 +49,7 @@ server.use(express.static(publicDirectory));
 
 server.use("/users", usersRouter);
 
-server.use("/blogs", blogsRouter);
+server.use("/accomodations", blogsRouter);
 
 server.use("/auth", authRouter);
 

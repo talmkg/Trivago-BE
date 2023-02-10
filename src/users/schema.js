@@ -3,15 +3,17 @@ import bcrypt from "bcrypt";
 
 const userSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
-    surname: { type: String, required: true },
+    name: { type: String, required: false },
+    surname: { type: String, required: false },
     email: { type: String, required: true },
+    role: { type: String, enum: ["guest", "host"], default: "guest" },
     //password
     password: { type: String, required: true },
-    dateOfBirth: { type: Date, required: true },
+    dateOfBirth: { type: Date, required: false },
     avatar: {
       type: String,
       default: "https://ui-avatars.com/api/?name=Unnamed+User",
+      required: false,
     },
   },
   { timestamps: true }

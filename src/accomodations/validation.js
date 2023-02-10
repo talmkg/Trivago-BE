@@ -7,40 +7,28 @@ const schema = {
       errorMessage: "title validation failed , type must be string  ",
     },
   },
-  category: {
+  description: {
     in: ["body"],
     isString: {
-      errorMessage: "category validation failed , type must be  string ",
+      errorMessage: "description validation failed , type must be string  ",
     },
   },
-  content: {
+  location: {
     in: ["body"],
     isString: {
-      errorMessage: "content validation failed , type must be string ",
+      errorMessage: "location validation failed , type must be string  ",
+    },
+  },
+  maxGuests: {
+    in: ["body"],
+    isNumber: {
+      errorMessage: "maxGuests validation failed , type must be a num  ",
     },
   },
   user: {
     in: ["body"],
     isMongoId: {
       errorMessage: "user must be a valid mongodb id",
-    },
-  },
-  "readTime.value": {
-    in: ["body"],
-    isNumeric: {
-      errorMessage: "readTime.value  validation failed , type must be numeric ",
-    },
-  },
-  "readTime.unit": {
-    in: ["body"],
-    isString: {
-      errorMessage: "readTime.unit  validation failed , type must be string ",
-    },
-  },
-  cover: {
-    in: ["body"],
-    isString: {
-      errorMessage: "cover validation failed , type must be string",
     },
   },
 };
@@ -77,13 +65,13 @@ export const checkCommentSchema = checkSchema(commentSchema);
 
 export const checkSearchSchema = checkSchema(searchSchema);
 
-export const checkBlogPostSchema = checkSchema(schema);
+export const checkAccomodationSchema = checkSchema(schema);
 
 export const checkValidationResult = (req, res, next) => {
   req.body.user = req.user._id.toString();
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    const error = new Error("Blog post validation is failed");
+    const error = new Error("Accomodation validation is failed");
     error.status = 400;
     error.errors = errors.array();
     next(error);
